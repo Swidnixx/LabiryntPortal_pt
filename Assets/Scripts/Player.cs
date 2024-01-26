@@ -12,8 +12,12 @@ public class Player : MonoBehaviour
         controller = GetComponent<CharacterController>();
     }
 
+    float velocity_y;
+    bool grounded;
+    bool input_jump;
     void Update()
     {
+        //Chodzenie
         float inputx = Input.GetAxisRaw("Horizontal");
         float inputy = Input.GetAxisRaw("Vertical");
 
@@ -22,6 +26,28 @@ public class Player : MonoBehaviour
 
         //motion = transform.TransformDirection(motion); // to jest niepotrzebne
 
-        controller.Move( motion );
+
+        //Grawitacja
+        input_jump |= Input.GetButtonDown("Jump");
+        grounded = velocity_y < 0 && ((controller.collisionFlags & CollisionFlags.Below) != 0);
+        if(grounded)
+        {
+            if(input_jump)
+            {
+                input_jump = false;
+                velocity_y = 7;
+            }
+            else
+            {
+                velocity_y = 0;
+            }
+        }
+        else
+        {
+            velocity_y += Physics.gravity.y * Time.deltaTime;
+        }
+
+        motion.y = velocity_y * Time.deltaTime;
+        controller.Move(motion);
     }
 }
