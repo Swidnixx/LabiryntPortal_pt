@@ -9,13 +9,16 @@ public class Portal : MonoBehaviour
     UnityEngine.Camera myCamera;
 
     public Renderer renderSurface;
-    //public Transform portalCollider;
+
     Transform playerCam;
+
+    public PortalTeleport teleport { get; private set; }
 
     private void Awake()
     {
         myCamera = GetComponentInChildren<UnityEngine.Camera>();
         playerCam = UnityEngine.Camera.main.transform;
+        teleport = GetComponentInChildren<PortalTeleport>();
     }
 
     private void Start()
@@ -23,6 +26,9 @@ public class Portal : MonoBehaviour
         RenderTexture rt = new RenderTexture(Screen.width, Screen.height, 0);
         myCamera.targetTexture = rt;
         otherPortal.renderSurface.material.SetTexture("_MainTex", rt);
+
+        otherPortal.teleport.receiver = teleport.transform;
+        teleport.otherPortal = otherPortal;
     }
 
     private void Update()
