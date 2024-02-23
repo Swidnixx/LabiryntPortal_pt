@@ -32,5 +32,10 @@ public class Portal : MonoBehaviour
             playerCam.localToWorldMatrix;
 
         myCamera.transform.SetPositionAndRotation(m.GetColumn(3), m.rotation);
+
+        //cutout obstacles between camera and portal by shifting cam frustum
+        Vector3 cameraToPortal = transform.position - myCamera.transform.position;
+        float nearPlane = cameraToPortal.magnitude - 2.4f;
+        myCamera.nearClipPlane = Mathf.Clamp(nearPlane, 0.01f, 50);
     }
 }
