@@ -38,4 +38,14 @@ public class Portal : MonoBehaviour
         float nearPlane = cameraToPortal.magnitude - 2.4f;
         myCamera.nearClipPlane = Mathf.Clamp(nearPlane, 0.01f, 50);
     }
+
+    public void Deactivate()
+    {
+        otherPortal.myCamera.enabled = false;
+    }
+
+    public void Activate()
+    {
+        otherPortal.myCamera.enabled = true;
+    }
 }

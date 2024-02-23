@@ -6,6 +6,14 @@ public class PortalTeleport : MonoBehaviour
 {
     public Transform receiver;
     Transform player;
+    public Portal parentPortal { get; private set; }
+    Portal otherPortal;
+
+    private void Start()
+    {
+        parentPortal = GetComponentInParent<Portal>();
+        otherPortal = receiver.GetComponentInParent<Portal>();
+    }
 
     private void FixedUpdate()
     {
@@ -29,6 +37,10 @@ public class PortalTeleport : MonoBehaviour
                 player.forward = playerForward;
 
                 player = null;
+
+                //Optimalisation
+                otherPortal.Activate();
+                parentPortal.Deactivate();
             }
         }
     }

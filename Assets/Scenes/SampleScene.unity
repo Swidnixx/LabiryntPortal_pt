@@ -208,6 +208,7 @@ GameObject:
   m_Component:
   - component: {fileID: 78478188}
   - component: {fileID: 78478187}
+  - component: {fileID: 78478189}
   m_Layer: 0
   m_Name: Portal_B
   m_TagString: Untagged
@@ -249,6 +250,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &78478189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78478186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd36b6d920634046bdebe583d250e08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enviroMask:
+    serializedVersion: 2
+    m_Bits: 115
 --- !u!1 &183723750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,6 +1137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 543299633}
   - component: {fileID: 543299632}
+  - component: {fileID: 543299634}
   m_Layer: 0
   m_Name: Portal_A
   m_TagString: Untagged
@@ -1162,6 +1179,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &543299634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543299631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd36b6d920634046bdebe583d250e08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enviroMask:
+    serializedVersion: 2
+    m_Bits: 115
 --- !u!1 &543345356
 GameObject:
   m_ObjectHideFlags: 0
@@ -2441,7 +2473,7 @@ GameObject:
   - component: {fileID: 1137434326}
   - component: {fileID: 1137434329}
   - component: {fileID: 1137434330}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3028,14 +3060,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1368252097}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25.7, y: 2.16, z: 0.1}
+  m_LocalRotation: {x: -0, y: 0.49712226, z: -0, w: 0.86768055}
+  m_LocalPosition: {x: -35.52, y: 2.16, z: 40.89}
   m_LocalScale: {x: 1, y: 5.2331743, z: 11.732}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 900028403}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 59.62, z: 0}
 --- !u!1 &1430762963
 GameObject:
   m_ObjectHideFlags: 0
