@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PortalTeleport : MonoBehaviour
 {
+    [HideInInspector]
     public Transform receiver;
     Transform player;
 
@@ -16,14 +17,15 @@ public class PortalTeleport : MonoBehaviour
             float dot = Vector3.Dot(portalForward, portalToPlayer);
             if(dot < 0)
             {
-                player.position = receiver.position;
+                portalToPlayer = transform.parent.InverseTransformDirection(portalToPlayer);
+                portalToPlayer = receiver.parent.TransformDirection(portalToPlayer);
+                player.position = receiver.position + portalToPlayer;
 
                 Vector3 playerForward = player.forward;
                 //zamiana kierunku na przestrzeñ portalu do którego wchodzimy
                 playerForward = transform.parent.InverseTransformDirection(playerForward);
                 //zamiana kierunku na przestrzeñ  portalu którym wychodzimy
                 playerForward = receiver.parent.TransformDirection(playerForward);
-
                 player.forward = playerForward;
 
                 player = null;
