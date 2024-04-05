@@ -88,4 +88,33 @@ public class GameManager : MonoBehaviour
         CancelInvoke(nameof(Stopper));
         InvokeRepeating(nameof(Stopper), time, 1);
     }
+
+    public bool HasKey(KeyColor color)
+    {
+        switch (color)
+        {
+            case KeyColor.Red:
+                return keys_red > 0;
+            case KeyColor.Green:
+                return keys_green > 0;
+            case KeyColor.Gold:
+                return keys_gold > 0;
+        }
+        return false;
+    }
+    public void UseKey(KeyColor color)
+    {
+        switch (color)
+        {
+            case KeyColor.Red:
+                keys_red--;
+                break;
+            case KeyColor.Green:
+                keys_green--;
+                break;
+            case KeyColor.Gold:
+                keys_gold--;
+                break;
+        }
+    }
 }
