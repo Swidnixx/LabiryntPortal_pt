@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,16 +6,20 @@ using UnityEngine;
 public class Generator : MonoBehaviour
 {
     public Texture2D map;
-    public ColorToPrefab[] mappings;
     public float size = 5;
+    public ColorToPrefab[] mappings;
 
-    private void Start()
+    public void Clear()
     {
-        Generate();
+        for(int i=transform.childCount-1; i>=0; i--)
+        {
+            DestroyImmediate(transform.GetChild(i).gameObject);
+        }
     }
 
     public void Generate()
     {
+        Clear();
         for(int x=0; x<map.width; x++)
         {
             for(int y=0; y<map.height; y++)
@@ -26,6 +31,7 @@ public class Generator : MonoBehaviour
                     {
                         GameObject prefab = m.prefab;
                         Vector3 pos = new Vector3(x, 0, y) * size;
+                        pos = transform.TransformPoint(pos);
                         Instantiate(prefab, pos, Quaternion.identity, transform);
                     }
                 }
@@ -33,6 +39,7 @@ public class Generator : MonoBehaviour
         }
     }
 
+    [Serializable]
     public class ColorToPrefab
     {
         public Color color;
