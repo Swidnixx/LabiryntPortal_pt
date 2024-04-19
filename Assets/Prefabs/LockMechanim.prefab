@@ -83,6 +83,7 @@ MonoBehaviour:
   keyColor: 2
   doorToOpen:
   - {fileID: 0}
+  doorOpenSfx: {fileID: 8300000, guid: 08add64404d036e4490cda07c38e2a06, type: 3}
 --- !u!1 &1713535639589695288
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class LockMechanim : MonoBehaviour
     Animator animator;
     bool playerInRange;
     bool alreadyOpen = false;
+    public AudioClip doorOpenSfx;
 
     private void Start()
     {
@@ -32,7 +33,8 @@ public class LockMechanim : MonoBehaviour
                     foreach (var d in doorToOpen)
                     {
                         d.is_open = !d.is_open;
-                    } 
+                    }
+                    SoundManager.Instance.PlaySFX(doorOpenSfx);
                 }
             }
         }

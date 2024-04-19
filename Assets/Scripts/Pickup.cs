@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Pickup : MonoBehaviour
 {
     public float speed = 100;
+    public AudioClip sfxClip;
 
     private void Update()
     {
@@ -21,6 +22,7 @@ public abstract class Pickup : MonoBehaviour
 
     protected virtual void Pick()
     {
+        SoundManager.Instance.PlaySFX(sfxClip);
         Destroy(gameObject);
     }
 }
