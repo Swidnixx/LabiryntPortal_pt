@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,10 +16,17 @@ public class GameManager : MonoBehaviour
     // Time
     public int time = 60;
     bool paused;
+    bool over;
 
     // Pickups
     int diamonds;
     int keys_red, keys_green, keys_gold;
+    public int Diamonds => diamonds;
+    public int RedKeys => keys_red;
+    public int GreenKeys => keys_green;
+    public int GoldKeys => keys_gold;
+
+    public DisplayUI displayUI;
 
     private void Start()
     {
@@ -26,6 +34,22 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        if(over || paused)
+        {
+            if(Input.GetKeyDown(KeyCode.F))
+            {
+                Time.timeScale = 1;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                Application.Quit();
+            }
+
+            if (!paused)
+                return;
+        }
+
         if(Input.GetButtonDown("Cancel"))
         {
             if(paused)
@@ -44,19 +68,32 @@ public class GameManager : MonoBehaviour
     void Pause()
     {
         Time.timeScale = 0;
+        displayUI.DisplayPause(true);
     }
     void Resume()
     {
         Time.timeScale = 1;
+        displayUI.DisplayPause(false);
     }
     void Stopper()
     {
+        displayUI.DisplayFreeze(false);
         time--;
         if(time <= 0)
         {
             //game over
             CancelInvoke();
+            Time.timeScale = 0;
+            over = true;
+            displayUI.DisplayGameOver(false);
         }
+    }
+    public void Win()
+    {
+        CancelInvoke();
+        Time.timeScale = 0;
+        over = true;
+        displayUI.DisplayGameOver(true);
     }
 
     // Pickups
@@ -87,6 +124,7 @@ public class GameManager : MonoBehaviour
     {
         CancelInvoke(nameof(Stopper));
         InvokeRepeating(nameof(Stopper), time, 1);
+        displayUI.DisplayFreeze(true);
     }
 
     public bool HasKey(KeyColor color)
